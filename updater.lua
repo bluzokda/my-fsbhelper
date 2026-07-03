@@ -59,7 +59,7 @@ local function applyApiNews(data)
         id = 'api_' .. version:gsub('[^%w_%-%.]', '_'),
         ver = 'v' .. version,
         date = date,
-        title = 'Новости с сайта',
+        title = 'ГЌГ®ГўГ®Г±ГІГЁ Г± Г±Г Г©ГІГ ',
         short_desc = items[1],
         extra_h = 12,
         hc = {0.35, 0.65, 1.0, 1.0},
@@ -105,7 +105,7 @@ local function registerUpdateCommands()
         if pending_update_url then
             updater:download(pending_update_url)
         elseif isSampAvailable() then
-            sampAddChatMessage('{FF6600}[FSBHELPER]{FFFFFF} Обновление скрипта не найдено.', -1)
+            sampAddChatMessage('{FF6600}[FSBHELPER]{FFFFFF} ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г±ГЄГ°ГЁГЇГІГ  Г­ГҐ Г­Г Г©Г¤ГҐГ­Г®.', -1)
         end
     end)
 end
@@ -124,7 +124,7 @@ function updater:check(show_chat)
     lua_thread.create(function()
         wait(12000)
         if not handled and show_chat and isSampAvailable() then
-            sampAddChatMessage('{FF6600}[FSBHELPER]{FFFFFF} Сервер обновлений не ответил за 12 секунд.', -1)
+            sampAddChatMessage('{FF6600}[FSBHELPER]{FFFFFF} Г‘ГҐГ°ГўГҐГ° Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГ© Г­ГҐ Г®ГІГўГҐГІГЁГ« Г§Г  12 Г±ГҐГЄГіГ­Г¤.', -1)
         end
     end)
 
@@ -134,9 +134,9 @@ function updater:check(show_chat)
 
             local file = io.open(self.temp_json, 'rb')
             if not file then
-                print('[FSBHELPER] Не удалось прочитать файл ответа обновлений')
+                print('[FSBHELPER] ГЌГҐ ГіГ¤Г Г«Г®Г±Гј ГЇГ°Г®Г·ГЁГІГ ГІГј ГґГ Г©Г« Г®ГІГўГҐГІГ  Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГ©')
                 if show_chat and isSampAvailable() then
-                    sampAddChatMessage('{FF3333}[FSBHELPER]{FFFFFF} Не удалось прочитать ответ сервера обновлений.', -1)
+                    sampAddChatMessage('{FF3333}[FSBHELPER]{FFFFFF} ГЌГҐ ГіГ¤Г Г«Г®Г±Гј ГЇГ°Г®Г·ГЁГІГ ГІГј Г®ГІГўГҐГІ Г±ГҐГ°ГўГҐГ°Г  Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГ©.', -1)
                 end
                 return
             end
@@ -167,29 +167,29 @@ function updater:check(show_chat)
                     pending_update_url = data.url
 
                     if show_chat and isSampAvailable() then
-                        sampAddChatMessage(string.format('{66FFCC}[FSBHELPER]{FFFFFF} Доступно обновление: %s -> %s. Напиши /scriptupd для установки.', tostring(thisScript().version), tostring(data.last)), -1)
+                        sampAddChatMessage(string.format('{66FFCC}[FSBHELPER]{FFFFFF} Г„Г®Г±ГІГіГЇГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ: %s -> %s. ГЌГ ГЇГЁГёГЁ /scriptupd Г¤Г«Гї ГіГ±ГІГ Г­Г®ГўГЄГЁ.', tostring(thisScript().version), tostring(data.last)), -1)
                     end
 
                 else
                     state.update_available.active = false
                     state.update_available.download_status = ''
                     pending_update_url = nil
-                    print('[FSBHELPER] Версия актуальна: ' .. thisScript().version)
+                    print('[FSBHELPER] Г‚ГҐГ°Г±ГЁГї Г ГЄГІГіГ Г«ГјГ­Г : ' .. thisScript().version)
                     if show_chat and isSampAvailable() then
-                        sampAddChatMessage('{66FFCC}[FSBHELPER]{FFFFFF} Обновлений нет. Текущая версия: ' .. tostring(thisScript().version), -1)
+                        sampAddChatMessage('{66FFCC}[FSBHELPER]{FFFFFF} ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГ© Г­ГҐГІ. Г’ГҐГЄГіГ№Г Гї ГўГҐГ°Г±ГЁГї: ' .. tostring(thisScript().version), -1)
                     end
                 end
             else
-                print('[FSBHELPER] Ошибка парсинга JSON обновления')
+                print('[FSBHELPER] ГЋГёГЁГЎГЄГ  ГЇГ Г°Г±ГЁГ­ГЈГ  JSON Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї')
                 if show_chat and isSampAvailable() then
-                    sampAddChatMessage('{FF3333}[FSBHELPER]{FFFFFF} Ошибка ответа сервера обновлений.', -1)
+                    sampAddChatMessage('{FF3333}[FSBHELPER]{FFFFFF} ГЋГёГЁГЎГЄГ  Г®ГІГўГҐГІГ  Г±ГҐГ°ГўГҐГ°Г  Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГ©.', -1)
                 end
             end
         elseif status == DL_STATUS.STATUSEX_HTTPERROR then
             handled = true
-            print('[FSBHELPER] Ошибка сети при проверке обновления')
+            print('[FSBHELPER] ГЋГёГЁГЎГЄГ  Г±ГҐГІГЁ ГЇГ°ГЁ ГЇГ°Г®ГўГҐГ°ГЄГҐ Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї')
             if show_chat and isSampAvailable() then
-                sampAddChatMessage('{FF3333}[FSBHELPER]{FFFFFF} Ошибка сети при проверке обновления.', -1)
+                sampAddChatMessage('{FF3333}[FSBHELPER]{FFFFFF} ГЋГёГЁГЎГЄГ  Г±ГҐГІГЁ ГЇГ°ГЁ ГЇГ°Г®ГўГҐГ°ГЄГҐ Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї.', -1)
             end
         end
     end)
@@ -222,7 +222,7 @@ function updater:download(url)
             if expected_version ~= '' and not content:find(expected_version, 1, true) then
                 pcall(os.remove, temp_path)
                 state.update_available.download_status = 'error'
-                print('[FSBHELPER] Скачанный файл не содержит ожидаемую версию ' .. expected_version)
+                print('[FSBHELPER] Г‘ГЄГ Г·Г Г­Г­Г»Г© ГґГ Г©Г« Г­ГҐ Г±Г®Г¤ГҐГ°Г¦ГЁГІ Г®Г¦ГЁГ¤Г ГҐГ¬ГіГѕ ГўГҐГ°Г±ГЁГѕ ' .. expected_version)
                 return
             end
 
@@ -238,9 +238,9 @@ function updater:download(url)
                     saveConfig()
 
                     if isSampAvailable() then
-                        sampAddChatMessage('{66FFCC}[FSBHELPER]{FFFFFF} Обновление установлено.', -1)
-                        sampAddChatMessage('{FFCC66}[FSBHELPER]{FFFFFF} Если нужно удалить старые lib: полностью закрой игру.', -1)
-                        sampAddChatMessage('{FFCC66}[FSBHELPER]{FFFFFF} Затем удали папку: moonloader\\lib\\fsbhelper', -1)
+                        sampAddChatMessage('{66FFCC}[FSBHELPER]{FFFFFF} ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­Г®.', -1)
+                        sampAddChatMessage('{FFCC66}[FSBHELPER]{FFFFFF} Г…Г±Г«ГЁ Г­ГіГ¦Г­Г® ГіГ¤Г Г«ГЁГІГј Г±ГІГ Г°Г»ГҐ lib: ГЇГ®Г«Г­Г®Г±ГІГјГѕ Г§Г ГЄГ°Г®Г© ГЁГЈГ°Гі.', -1)
+                        sampAddChatMessage('{FFCC66}[FSBHELPER]{FFFFFF} Г‡Г ГІГҐГ¬ ГіГ¤Г Г«ГЁ ГЇГ ГЇГЄГі: moonloader\\lib\\fsbhelper', -1)
                     end
                     
                     thisScript():reload()
@@ -267,7 +267,7 @@ local function downloadResource(url, path, resource_type, callback)
 
     if resource_type == "text" then
         if fsbhelper.config.autoUpdateTexts then
-            print('[FSBHELPER] Обновляю текст: ' .. path:match('([^\\]+)$'))
+            print('[FSBHELPER] ГЋГЎГ­Г®ГўГ«ГїГѕ ГІГҐГЄГ±ГІ: ' .. path:match('([^\\]+)$'))
             downloadUrlToFile(url, path, function(id, status)
                 if status == DL_STATUS.STATUSEX_ENDDOWNLOAD then
                     if callback then callback(true) end
@@ -276,7 +276,7 @@ local function downloadResource(url, path, resource_type, callback)
             return true
         else
             if not doesFileExist(path) then
-                print('[FSBHELPER] Скачиваю текст: ' .. path:match('([^\\]+)$'))
+                print('[FSBHELPER] Г‘ГЄГ Г·ГЁГўГ Гѕ ГІГҐГЄГ±ГІ: ' .. path:match('([^\\]+)$'))
                 downloadUrlToFile(url, path, function(id, status)
                     if status == DL_STATUS.STATUSEX_ENDDOWNLOAD then
                         if callback then callback(true) end
@@ -284,7 +284,7 @@ local function downloadResource(url, path, resource_type, callback)
                 end)
                 return true
             else
-                print('[FSBHELPER] Пропускаю: ' .. path:match('([^\\]+)$'))
+                print('[FSBHELPER] ГЏГ°Г®ГЇГіГ±ГЄГ Гѕ: ' .. path:match('([^\\]+)$'))
                 if callback then callback(false) end
                 return false
             end
@@ -292,7 +292,7 @@ local function downloadResource(url, path, resource_type, callback)
     end
 
     if not doesFileExist(path) then
-        print('[FSBHELPER] Скачиваю: ' .. path:match('([^\\]+)$'))
+        print('[FSBHELPER] Г‘ГЄГ Г·ГЁГўГ Гѕ: ' .. path:match('([^\\]+)$'))
         downloadUrlToFile(url, path, function(id, status)
             if status == DL_STATUS.STATUSEX_ENDDOWNLOAD then
                 if callback then callback(true) end
@@ -386,12 +386,12 @@ local function checkAndDownloadResources()
                 end
             end
 
-            state.loading.detail = string.format('Ресурсы: %d/%d', processed_count, total)
+            state.loading.detail = string.format('ГђГҐГ±ГіГ°Г±Г»: %d/%d', processed_count, total)
             state.loading.progress = 0.80 + (processed_count / total) * 0.20
 
             if processed_count == total then
                 if downloaded_count > 0 then
-                    print('[FSBHELPER] Загружено новых ресурсов: ' .. downloaded_count)
+                    print('[FSBHELPER] Г‡Г ГЈГ°ГіГ¦ГҐГ­Г® Г­Г®ГўГ»Гµ Г°ГҐГ±ГіГ°Г±Г®Гў: ' .. downloaded_count)
                     if images_downloaded and fsbhelper.config.showImages then
                         state.textures.lazy_loaded = false
                     end
