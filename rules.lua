@@ -74,16 +74,16 @@ end
 
 
 local search_synonyms = {
-    ["тонировка"]           = {"тонировочная", "затемнение", "тонирование"},
-    ["полиция"]             = {"мвд", "полицейский", "правоохранитель"},
-    ["обыск"]               = {"досмотр", "проверка", "обыскивание"},
-    ["задержание"]          = {"арест", "задержать", "задержали"},
-    ["радар"]               = {"радары", "радаром", "скорость"},
-    ["маска"]               = {"маски", "снятие", "замаскированный"},
-    ["удостоверение"]       = {"документ", "удостоверения", "корочка"},
-    ["закрытая территория"] = {"зт", "закрытые территории", "охраняемая зона"},
-    ["автомобиль"]          = {"машина", "транспорт", "авто", "тс"},
-    ["оружие"]              = {"пушка", "ствол", "огнестрел", "травмат"}
+    ["ГІГ®Г­ГЁГ°Г®ГўГЄГ "]           = {"ГІГ®Г­ГЁГ°Г®ГўГ®Г·Г­Г Гї", "Г§Г ГІГҐГ¬Г­ГҐГ­ГЁГҐ", "ГІГ®Г­ГЁГ°Г®ГўГ Г­ГЁГҐ"},
+    ["ГЇГ®Г«ГЁГ¶ГЁГї"]             = {"Г¬ГўГ¤", "ГЇГ®Г«ГЁГ¶ГҐГ©Г±ГЄГЁГ©", "ГЇГ°Г ГўГ®Г®ГµГ°Г Г­ГЁГІГҐГ«Гј"},
+    ["Г®ГЎГ»Г±ГЄ"]               = {"Г¤Г®Г±Г¬Г®ГІГ°", "ГЇГ°Г®ГўГҐГ°ГЄГ ", "Г®ГЎГ»Г±ГЄГЁГўГ Г­ГЁГҐ"},
+    ["Г§Г Г¤ГҐГ°Г¦Г Г­ГЁГҐ"]          = {"Г Г°ГҐГ±ГІ", "Г§Г Г¤ГҐГ°Г¦Г ГІГј", "Г§Г Г¤ГҐГ°Г¦Г Г«ГЁ"},
+    ["Г°Г Г¤Г Г°"]               = {"Г°Г Г¤Г Г°Г»", "Г°Г Г¤Г Г°Г®Г¬", "Г±ГЄГ®Г°Г®Г±ГІГј"},
+    ["Г¬Г Г±ГЄГ "]               = {"Г¬Г Г±ГЄГЁ", "Г±Г­ГїГІГЁГҐ", "Г§Г Г¬Г Г±ГЄГЁГ°Г®ГўГ Г­Г­Г»Г©"},
+    ["ГіГ¤Г®Г±ГІГ®ГўГҐГ°ГҐГ­ГЁГҐ"]       = {"Г¤Г®ГЄГіГ¬ГҐГ­ГІ", "ГіГ¤Г®Г±ГІГ®ГўГҐГ°ГҐГ­ГЁГї", "ГЄГ®Г°Г®Г·ГЄГ "},
+    ["Г§Г ГЄГ°Г»ГІГ Гї ГІГҐГ°Г°ГЁГІГ®Г°ГЁГї"] = {"Г§ГІ", "Г§Г ГЄГ°Г»ГІГ»ГҐ ГІГҐГ°Г°ГЁГІГ®Г°ГЁГЁ", "Г®ГµГ°Г Г­ГїГҐГ¬Г Гї Г§Г®Г­Г "},
+    ["Г ГўГІГ®Г¬Г®ГЎГЁГ«Гј"]          = {"Г¬Г ГёГЁГ­Г ", "ГІГ°Г Г­Г±ГЇГ®Г°ГІ", "Г ГўГІГ®", "ГІГ±"},
+    ["Г®Г°ГіГ¦ГЁГҐ"]              = {"ГЇГіГёГЄГ ", "Г±ГІГўГ®Г«", "Г®ГЈГ­ГҐГ±ГІГ°ГҐГ«", "ГІГ°Г ГўГ¬Г ГІ"}
 }
 
 
@@ -248,13 +248,13 @@ local function loadTextFromFile(filename)
     local filepath = fsbhelper.TEXTS_DIR .. '\\' .. filename
 
     if not doesFileExist(filepath) then
-        return "{FF0000}Ошибка: текст не найден.\n{FFFFFF}Проверьте наличие файла " .. filename .. " в папке texts/"
+        return "{FF0000}ГЋГёГЁГЎГЄГ : ГІГҐГЄГ±ГІ Г­ГҐ Г­Г Г©Г¤ГҐГ­.\n{FFFFFF}ГЏГ°Г®ГўГҐГ°ГјГІГҐ Г­Г Г«ГЁГ·ГЁГҐ ГґГ Г©Г«Г  " .. filename .. " Гў ГЇГ ГЇГЄГҐ texts/"
     end
 
     local content, read_err = safe_read_all(filepath, 'rb', false)
     if not content then
-        logError('Ошибка открытия текстового файла: ' .. tostring(filepath) .. ', error: ' .. tostring(read_err))
-        return "{FF0000}Ошибка: не удалось открыть файл " .. filename
+        logError('ГЋГёГЁГЎГЄГ  Г®ГІГЄГ°Г»ГІГЁГї ГІГҐГЄГ±ГІГ®ГўГ®ГЈГ® ГґГ Г©Г«Г : ' .. tostring(filepath) .. ', error: ' .. tostring(read_err))
+        return "{FF0000}ГЋГёГЁГЎГЄГ : Г­ГҐ ГіГ¤Г Г«Г®Г±Гј Г®ГІГЄГ°Г»ГІГј ГґГ Г©Г« " .. filename
     end
 
     if content:sub(1, 3) == '\xEF\xBB\xBF' then
@@ -481,11 +481,11 @@ local function renderSearchResults(full_text, query, rule_index, tab_index)
     local results, all_lines = searchInTextCached(full_text, query, rule_index or 0, tab_index or 0)
 
     if #results == 0 then
-        imgui.TextColored(COLORS.error_soft, u8'Ничего не найдено')
+        imgui.TextColored(COLORS.error_soft, u8'ГЌГЁГ·ГҐГЈГ® Г­ГҐ Г­Г Г©Г¤ГҐГ­Г®')
         imgui.Spacing()
-        imgui.TextColored(COLORS.text_label, u8'Попробуйте:')
-        imgui.BulletText(u8'Использовать синонимы')
-        imgui.BulletText(u8'Проверить опечатки (авто-поиск исправляет только мелкие)')
+        imgui.TextColored(COLORS.text_label, u8'ГЏГ®ГЇГ°Г®ГЎГіГ©ГІГҐ:')
+        imgui.BulletText(u8'Г€Г±ГЇГ®Г«ГјГ§Г®ГўГ ГІГј Г±ГЁГ­Г®Г­ГЁГ¬Г»')
+        imgui.BulletText(u8'ГЏГ°Г®ГўГҐГ°ГЁГІГј Г®ГЇГҐГ·Г ГІГЄГЁ (Г ГўГІГ®-ГЇГ®ГЁГ±ГЄ ГЁГ±ГЇГ°Г ГўГ«ГїГҐГІ ГІГ®Г«ГјГЄГ® Г¬ГҐГ«ГЄГЁГҐ)')
         imgui.Spacing()
         imgui.Separator()
         imgui.Spacing()
@@ -495,7 +495,7 @@ local function renderSearchResults(full_text, query, rule_index, tab_index)
         return
     end
 
-    imgui.TextColored(COLORS.success, u8(string.format('Найдено: %d', #results)))
+    imgui.TextColored(COLORS.success, u8(string.format('ГЌГ Г©Г¤ГҐГ­Г®: %d', #results)))
     imgui.Spacing()
     imgui.Separator()
     imgui.Spacing()
@@ -521,7 +521,7 @@ local function renderSearchResults(full_text, query, rule_index, tab_index)
             shown_lines[start_line] = end_line
 
             imgui.PushStyleColor(imgui.Col.Text, COLORS.text_info)
-            imgui.Text(u8(string.format('Результат #%d', i)))
+            imgui.Text(u8(string.format('ГђГҐГ§ГіГ«ГјГІГ ГІ #%d', i)))
             imgui.PopStyleColor()
 
             for line_idx = start_line, end_line do
@@ -560,11 +560,11 @@ local function getRuleText(category, tabIndex)
     local files = RULE_FILES[category]
     local idx = (tonumber(tabIndex) or 0) + 1
 
-    if not files then return "{FF0000}Ошибка: неизвестная категория правил" end
+    if not files then return "{FF0000}ГЋГёГЁГЎГЄГ : Г­ГҐГЁГ§ГўГҐГ±ГІГ­Г Гї ГЄГ ГІГҐГЈГ®Г°ГЁГї ГЇГ°Г ГўГЁГ«" end
     if idx < 1 then idx = 1 elseif idx > #files then idx = #files end
 
     local filename = files[idx]
-    if not filename then return "{FF0000}Ошибка: файл не найден" end
+    if not filename then return "{FF0000}ГЋГёГЁГЎГЄГ : ГґГ Г©Г« Г­ГҐ Г­Г Г©Г¤ГҐГ­" end
 
     return loadTextFromFile(filename)
 end
@@ -618,30 +618,30 @@ M.getMVDStatuteText              = getMVDStatuteText
 local function initStaticRules()
     fsbhelper.rulesDB = {
         
-        {name = "Законодательная база",                                              category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "ФЗ \"О судебной системе и статусе судей\"",                        category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "ФЗ \"О закрытых и охраняемых территориях\"",                       category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "ФЗ \"О системе нормативно-правовых актов Нижегородской области\"", category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Уголовно-процессуальный кодекс",                                   category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "ФЗ \"О правосудии\"",                                              category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Трудовой кодекс",                                                  category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Единая система переводов",                                          category = "law", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
+        {name = "Г‡Г ГЄГ®Г­Г®Г¤Г ГІГҐГ«ГјГ­Г Гї ГЎГ Г§Г ",                                              category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г”Г‡ \"ГЋ Г±ГіГ¤ГҐГЎГ­Г®Г© Г±ГЁГ±ГІГҐГ¬ГҐ ГЁ Г±ГІГ ГІГіГ±ГҐ Г±ГіГ¤ГҐГ©\"",                        category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г”Г‡ \"ГЋ Г§Г ГЄГ°Г»ГІГ»Гµ ГЁ Г®ГµГ°Г Г­ГїГҐГ¬Г»Гµ ГІГҐГ°Г°ГЁГІГ®Г°ГЁГїГµ\"",                       category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г”Г‡ \"ГЋ Г±ГЁГ±ГІГҐГ¬ГҐ Г­Г®Г°Г¬Г ГІГЁГўГ­Г®-ГЇГ°Г ГўГ®ГўГ»Гµ Г ГЄГІГ®Гў ГЌГЁГ¦ГҐГЈГ®Г°Г®Г¤Г±ГЄГ®Г© Г®ГЎГ«Г Г±ГІГЁ\"", category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г“ГЈГ®Г«Г®ГўГ­Г®-ГЇГ°Г®Г¶ГҐГ±Г±ГіГ Г«ГјГ­Г»Г© ГЄГ®Г¤ГҐГЄГ±",                                   category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г”Г‡ \"ГЋ ГЇГ°Г ГўГ®Г±ГіГ¤ГЁГЁ\"",                                              category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г’Г°ГіГ¤Г®ГўГ®Г© ГЄГ®Г¤ГҐГЄГ±",                                                  category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г…Г¤ГЁГ­Г Гї Г±ГЁГ±ГІГҐГ¬Г  ГЇГҐГ°ГҐГўГ®Г¤Г®Гў",                                          category = "law", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
         
-        {name = "Правила для полицейских",                                           category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Регламент проведения проверок",                                     category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Критерии для вступления во фракции",                               category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Уставной внешний вид",                                             category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Структура государственных фракций",                                category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Система выборов губернатора",                                       category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "График рабочего дня",                                              category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "Правила государственной волны",                                    category = "reg", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
+        {name = "ГЏГ°Г ГўГЁГ«Г  Г¤Г«Гї ГЇГ®Г«ГЁГ¶ГҐГ©Г±ГЄГЁГµ",                                           category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "ГђГҐГЈГ«Г Г¬ГҐГ­ГІ ГЇГ°Г®ГўГҐГ¤ГҐГ­ГЁГї ГЇГ°Г®ГўГҐГ°Г®ГЄ",                                     category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "ГЉГ°ГЁГІГҐГ°ГЁГЁ Г¤Г«Гї ГўГ±ГІГіГЇГ«ГҐГ­ГЁГї ГўГ® ГґГ°Г ГЄГ¶ГЁГЁ",                               category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г“Г±ГІГ ГўГ­Г®Г© ГўГ­ГҐГёГ­ГЁГ© ГўГЁГ¤",                                             category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г‘ГІГ°ГіГЄГІГіГ°Г  ГЈГ®Г±ГіГ¤Г Г°Г±ГІГўГҐГ­Г­Г»Гµ ГґГ°Г ГЄГ¶ГЁГ©",                                category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г‘ГЁГ±ГІГҐГ¬Г  ГўГ»ГЎГ®Г°Г®Гў ГЈГіГЎГҐГ°Г­Г ГІГ®Г°Г ",                                       category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "ГѓГ°Г ГґГЁГЄ Г°Г ГЎГ®Г·ГҐГЈГ® Г¤Г­Гї",                                              category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "ГЏГ°Г ГўГЁГ«Г  ГЈГ®Г±ГіГ¤Г Г°Г±ГІГўГҐГ­Г­Г®Г© ГўГ®Г«Г­Г»",                                    category = "reg", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
         
-        {name = "ФСБ | Устав",                                                      category = "fsb", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "ФСБ | Правила внедрения",                                          category = "fsb", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
+        {name = "Г”Г‘ГЃ | Г“Г±ГІГ Гў",                                                      category = "fsb", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "Г”Г‘ГЃ | ГЏГ°Г ГўГЁГ«Г  ГўГ­ГҐГ¤Г°ГҐГ­ГЁГї",                                          category = "fsb", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
         
-        {name = "МВД | Справочник Сотрудника",                                      category = "mvd", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "МВД | Правила строевого устава",                                   category = "mvd", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
-        {name = "МВД | Устав",                                                      category = "mvd", updateDate = "30.04.2026", key = {}, keyName = "Не назначено", holdMode = false, extra_h = -9},
+        {name = "ГЊГ‚Г„ | Г‘ГЇГ°Г ГўГ®Г·Г­ГЁГЄ Г‘Г®ГІГ°ГіГ¤Г­ГЁГЄГ ",                                      category = "mvd", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "ГЊГ‚Г„ | ГЏГ°Г ГўГЁГ«Г  Г±ГІГ°Г®ГҐГўГ®ГЈГ® ГіГ±ГІГ ГўГ ",                                   category = "mvd", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
+        {name = "ГЊГ‚Г„ | Г“Г±ГІГ Гў",                                                      category = "mvd", updateDate = "30.04.2026", key = {}, keyName = "ГЌГҐ Г­Г Г§Г­Г Г·ГҐГ­Г®", holdMode = false, extra_h = -9},
     }
 end
 M.initStaticRules = initStaticRules
