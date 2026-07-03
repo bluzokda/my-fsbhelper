@@ -30,7 +30,7 @@ end
 
 local function copyToClipboard(text)
    setClipboardText(text)
-   sampAddChatMessage('[FSBHELPER] Скопировано: ' .. text, 0x00FF00)
+   sampAddChatMessage('[FSBHELPER] Г‘ГЄГ®ГЇГЁГ°Г®ГўГ Г­Г®: ' .. text, 0x00FF00)
 end
 
 
